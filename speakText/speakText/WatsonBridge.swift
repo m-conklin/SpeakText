@@ -21,12 +21,18 @@ class SpeechToTextBridge: NSObject {
     
     func synthesize(audio: NSURL) {
         var settings = RecognitionSettings(contentType: .WAV)
-        settings.interimResults = true
+        settings.interimResults = false
         let failure = { (error: NSError) in print(error) }
         speechToText.recognize(audio, settings: settings, failure: failure) { results in
             print(results.bestTranscript)
-//            print(results.results)
+            self.passText(results.bestTranscript)
         }
+    }
+    
+    func passText(text: String) {
+        let nc = NSNotificationCenter.defaultCenter()
+        let dictionary = ["text": text]
+        nc.postNotificationName("TextReturnedFromWatson", object: nil, userInfo: dictionary)
     }
     
 }

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton * recordButton;
 @property (weak, nonatomic) IBOutlet UIButton * stopButton;
 @property (weak, nonatomic) IBOutlet UIButton * playButton;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 - (IBAction)recordButtonTapped:(UIButton *)sender;
 - (IBAction)stopButtonTapped:(UIButton *)sender;

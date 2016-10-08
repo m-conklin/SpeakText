@@ -22,7 +22,7 @@
 @end
 
 @implementation ViewController
-@synthesize stopButton, playButton, recordButton;
+@synthesize stopButton, playButton, recordButton, textView;
 
 
 - (IBAction)recordButtonTapped:(UIButton *)sender {
@@ -53,6 +53,14 @@
 
 - (IBAction)playButtonTapped:(UIButton *)sender {
     if (!recorder.recording) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            speechToTextBridge = [[SpeechToTextBridge alloc] init];
+            [speechToTextBridge synthesize:outputFileURL];
+
+        });
+        
+        
+        [recordButton setTitle:@"Record" forState:UIControlStateNormal];
         speechToTextBridge = [[SpeechToTextBridge alloc] init];
         [speechToTextBridge synthesize:outputFileURL];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
@@ -66,6 +74,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     [stopButton setEnabled:NO];
     [playButton setEnabled:NO];
+    
+    //Add listner
+    NSNotificationCenter *ns = [NSNotificationCenter defaultCenter];
+    [ns addObserver:self selector:@selector(updateTextView:) name:@"TextReturnedFromWatson" object:nil];
     
     //Audio Path
     NSArray *pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],@"Test.wav", nil];
@@ -89,7 +101,10 @@
     [recorder prepareToRecord];
 }
 
-
+- (void)updateTextView:(NSNotification *)notification {
+    NSDictionary *dictionary = [notification userInfo];
+    textView.text = dictionary[@"text"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -102,10 +117,6 @@
 }
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:@"Finish playing the recording" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
