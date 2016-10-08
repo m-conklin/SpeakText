@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton * recordButton;
+@property (weak, nonatomic) IBOutlet UIButton * stopButton;
+@property (weak, nonatomic) IBOutlet UIButton * playButton;
+
+- (IBAction)recordButtonTapped:(UIButton *)sender;
+- (IBAction)stopButtonTapped:(UIButton *)sender;
+- (IBAction)playButtonTapped:(UIButton *)sender;
 
 @end
 

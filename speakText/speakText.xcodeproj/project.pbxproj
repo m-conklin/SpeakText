@@ -18,6 +18,8 @@
 		1CE01DEC1DA8B53A005DF015 /* Freddy.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CE01DE71DA8B4E5005DF015 /* Freddy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CE01DED1DA8B53A005DF015 /* RestKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CE01DE51DA8B4CA005DF015 /* RestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CE01DEE1DA8B53A005DF015 /* SpeechToTextV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CE01DE31DA8B4B8005DF015 /* SpeechToTextV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1CE01DF11DA8BA6F005DF015 /* WatsonBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE01DF01DA8BA6F005DF015 /* WatsonBridge.swift */; };
+		1CE01DF51DA8C5F6005DF015 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CE01DF21DA8C5D0005DF015 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +32,7 @@
 				1CE01DEB1DA8B53A005DF015 /* Alamofire.framework in CopyFiles */,
 				1CE01DEC1DA8B53A005DF015 /* Freddy.framework in CopyFiles */,
 				1CE01DED1DA8B53A005DF015 /* RestKit.framework in CopyFiles */,
+				1CE01DF51DA8C5F6005DF015 /* Starscream.framework in CopyFiles */,
 				1CE01DEE1DA8B53A005DF015 /* SpeechToTextV1.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +55,9 @@
 		1CE01DE51DA8B4CA005DF015 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
 		1CE01DE71DA8B4E5005DF015 /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
 		1CE01DE91DA8B507005DF015 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		1CE01DEF1DA8BA6E005DF015 /* speakText-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "speakText-Bridging-Header.h"; sourceTree = "<group>"; };
+		1CE01DF01DA8BA6F005DF015 /* WatsonBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatsonBridge.swift; sourceTree = "<group>"; };
+		1CE01DF21DA8C5D0005DF015 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		1CE01DB51DA8AF46005DF015 /* speakText */ = {
 			isa = PBXGroup;
 			children = (
+				1CE01DF01DA8BA6F005DF015 /* WatsonBridge.swift */,
 				1CE01DB91DA8AF46005DF015 /* AppDelegate.h */,
 				1CE01DBA1DA8AF46005DF015 /* AppDelegate.m */,
 				1CE01DBC1DA8AF46005DF015 /* ViewController.h */,
@@ -103,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				1CE01DB71DA8AF46005DF015 /* main.m */,
+				1CE01DEF1DA8BA6E005DF015 /* speakText-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -110,6 +118,7 @@
 		1CE01DD01DA8B1F6005DF015 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				1CE01DF21DA8C5D0005DF015 /* Starscream.framework */,
 				1CE01DE91DA8B507005DF015 /* Alamofire.framework */,
 				1CE01DE71DA8B4E5005DF015 /* Freddy.framework */,
 				1CE01DE51DA8B4CA005DF015 /* RestKit.framework */,
@@ -151,6 +160,7 @@
 					1CE01DB21DA8AF46005DF015 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = K23RN5QVJH;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -194,6 +204,7 @@
 				1CE01DBE1DA8AF46005DF015 /* ViewController.m in Sources */,
 				1CE01DBB1DA8AF46005DF015 /* AppDelegate.m in Sources */,
 				1CE01DB81DA8AF46005DF015 /* main.m in Sources */,
+				1CE01DF11DA8BA6F005DF015 /* WatsonBridge.swift in Sources */,
 				1CE01DC41DA8AF46005DF015 /* speakText.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = K23RN5QVJH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -323,6 +335,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.martin.speakText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "speakText/speakText-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -330,6 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = K23RN5QVJH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -339,6 +355,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.martin.speakText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "speakText/speakText-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -361,6 +379,7 @@
 				1CE01DCF1DA8AF46005DF015 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
