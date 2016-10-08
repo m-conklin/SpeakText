@@ -102,9 +102,11 @@
 }
 
 - (void)updateTextView:(NSNotification *)notification {
-    NSDictionary *dictionary = [notification userInfo];
-    textView.text = dictionary[@"text"];
-}
+    dispatch_async(dispatch_get_main_queue(), ^{ // 2
+        NSDictionary *dictionary = [notification userInfo];
+        textView.text = dictionary[@"text"];
+    });
+   }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
