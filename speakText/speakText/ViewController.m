@@ -185,8 +185,8 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    RecordingTVC *recordingTVC = (RecordingTVC *)([navigationController viewControllers][0]);
+//    UINavigationController *navigationController = [segue destinationViewController];
+    RecordingTVC *recordingTVC = (RecordingTVC *)[segue destinationViewController]; //([navigationController viewControllers][0]);
     recordingTVC.managedObjectContext = [self managedObjectContext];
 }
 

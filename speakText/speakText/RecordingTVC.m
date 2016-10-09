@@ -12,7 +12,7 @@
 #import "DetailViewController.h"
 
 @interface RecordingTVC () {
-    NSArray *recordings;
+    NSMutableArray *recordings;
 }
 
 @end
@@ -24,11 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Recording" inManagedObjectContext:managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:entityDescription];
     NSError *error;
-    recordings = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    recordings = [[managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
     
     if (recordings.count == 0) {
         NSLog(@"Failed to access core data");
@@ -71,25 +73,31 @@
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [managedObjectContext deleteObject:[recordings objectAtIndex:indexPath.row]];
+        NSError *error = nil;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Error deleting from core data. %@ %@", error, [error localizedDescription]);
+        }
+        [recordings removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
