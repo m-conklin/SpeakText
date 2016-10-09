@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CCC77EF1DA9856E0075B8B5 /* Recording+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC77EC1DA9856E0075B8B5 /* Recording+CoreDataClass.m */; };
+		1CCC77F01DA9856E0075B8B5 /* Recording+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC77EE1DA9856E0075B8B5 /* Recording+CoreDataProperties.m */; };
+		1CCC78201DA9CC770075B8B5 /* RecordingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC781F1DA9CC770075B8B5 /* RecordingTVC.m */; };
 		1CE01DB81DA8AF46005DF015 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE01DB71DA8AF46005DF015 /* main.m */; };
 		1CE01DBB1DA8AF46005DF015 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE01DBA1DA8AF46005DF015 /* AppDelegate.m */; };
 		1CE01DBE1DA8AF46005DF015 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE01DBD1DA8AF46005DF015 /* ViewController.m */; };
@@ -40,6 +43,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1CCC77EB1DA9856E0075B8B5 /* Recording+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Recording+CoreDataClass.h"; path = "speakText/Recording+CoreDataClass.h"; sourceTree = "<group>"; };
+		1CCC77EC1DA9856E0075B8B5 /* Recording+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Recording+CoreDataClass.m"; path = "speakText/Recording+CoreDataClass.m"; sourceTree = "<group>"; };
+		1CCC77ED1DA9856E0075B8B5 /* Recording+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Recording+CoreDataProperties.h"; path = "speakText/Recording+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1CCC77EE1DA9856E0075B8B5 /* Recording+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Recording+CoreDataProperties.m"; path = "speakText/Recording+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1CCC781E1DA9CC770075B8B5 /* RecordingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingTVC.h; sourceTree = "<group>"; };
+		1CCC781F1DA9CC770075B8B5 /* RecordingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingTVC.m; sourceTree = "<group>"; };
 		1CE01DB31DA8AF46005DF015 /* speakText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = speakText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE01DB71DA8AF46005DF015 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1CE01DB91DA8AF46005DF015 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,10 +80,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CCC77F11DA9857C0075B8B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CE01DC21DA8AF46005DF015 /* speakText.xcdatamodeld */,
+				1CCC77EB1DA9856E0075B8B5 /* Recording+CoreDataClass.h */,
+				1CCC77EC1DA9856E0075B8B5 /* Recording+CoreDataClass.m */,
+				1CCC77ED1DA9856E0075B8B5 /* Recording+CoreDataProperties.h */,
+				1CCC77EE1DA9856E0075B8B5 /* Recording+CoreDataProperties.m */,
+			);
+			name = Models;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		1CE01DAA1DA8AF46005DF015 = {
 			isa = PBXGroup;
 			children = (
-				1CE01DD01DA8B1F6005DF015 /* FrameWorks */,
 				1CE01DB51DA8AF46005DF015 /* speakText */,
 				1CE01DB41DA8AF46005DF015 /* Products */,
 			);
@@ -96,11 +117,11 @@
 				1CE01DBA1DA8AF46005DF015 /* AppDelegate.m */,
 				1CE01DBC1DA8AF46005DF015 /* ViewController.h */,
 				1CE01DBD1DA8AF46005DF015 /* ViewController.m */,
+				1CCC781E1DA9CC770075B8B5 /* RecordingTVC.h */,
+				1CCC781F1DA9CC770075B8B5 /* RecordingTVC.m */,
 				1CE01DBF1DA8AF46005DF015 /* Main.storyboard */,
-				1CE01DC51DA8AF46005DF015 /* Assets.xcassets */,
-				1CE01DC71DA8AF46005DF015 /* LaunchScreen.storyboard */,
-				1CE01DCA1DA8AF46005DF015 /* Info.plist */,
-				1CE01DC21DA8AF46005DF015 /* speakText.xcdatamodeld */,
+				1CCC77F11DA9857C0075B8B5 /* Models */,
+				1CE01DD01DA8B1F6005DF015 /* FrameWorks */,
 				1CE01DB61DA8AF46005DF015 /* Supporting Files */,
 			);
 			path = speakText;
@@ -109,8 +130,11 @@
 		1CE01DB61DA8AF46005DF015 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1CE01DC71DA8AF46005DF015 /* LaunchScreen.storyboard */,
 				1CE01DB71DA8AF46005DF015 /* main.m */,
 				1CE01DEF1DA8BA6E005DF015 /* speakText-Bridging-Header.h */,
+				1CE01DCA1DA8AF46005DF015 /* Info.plist */,
+				1CE01DC51DA8AF46005DF015 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -125,6 +149,7 @@
 				1CE01DE31DA8B4B8005DF015 /* SpeechToTextV1.framework */,
 			);
 			name = FrameWorks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +229,11 @@
 				1CE01DBE1DA8AF46005DF015 /* ViewController.m in Sources */,
 				1CE01DBB1DA8AF46005DF015 /* AppDelegate.m in Sources */,
 				1CE01DB81DA8AF46005DF015 /* main.m in Sources */,
+				1CCC78201DA9CC770075B8B5 /* RecordingTVC.m in Sources */,
 				1CE01DF11DA8BA6F005DF015 /* WatsonBridge.swift in Sources */,
 				1CE01DC41DA8AF46005DF015 /* speakText.xcdatamodeld in Sources */,
+				1CCC77EF1DA9856E0075B8B5 /* Recording+CoreDataClass.m in Sources */,
+				1CCC77F01DA9856E0075B8B5 /* Recording+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +418,8 @@
 				1CE01DC31DA8AF46005DF015 /* speakText.xcdatamodel */,
 			);
 			currentVersion = 1CE01DC31DA8AF46005DF015 /* speakText.xcdatamodel */;
-			path = speakText.xcdatamodeld;
+			name = speakText.xcdatamodeld;
+			path = speakText/speakText.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
