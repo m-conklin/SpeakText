@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recording+CoreDataClass.h"
 
 @interface RecordingTVC : UITableViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
+@property (strong, nonatomic) Recording *recording;
 
 @end

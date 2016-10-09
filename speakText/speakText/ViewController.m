@@ -96,7 +96,7 @@
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSString *title = alertController.textFields[0].text;
-        NSLog(@"%@", title);
+//        NSLog(@"%@", title);
         [self saveRecording:title];
 //        NSManagedObjectContext *managedContext = [self managedObjectContext];
 //        NSManagedObject *newRecording = [NSEntityDescription insertNewObjectForEntityForName:@"Recording" inManagedObjectContext:managedContext];
@@ -121,10 +121,7 @@
     
     if (![managedContext save:&error]) {
         NSLog(@"Error saving to core data: %@ %@", error, [error localizedDescription]);
-    } else {
-        NSLog(@"Victory");
     }
-
 }
 
 
@@ -143,7 +140,7 @@
     //Audio Path
     filename = [NSString stringWithFormat:@"%d%@", (int) [[NSDate date] timeIntervalSince1970], @".wav"];
     
-    NSLog(@"%@", filename );
+//    NSLog(@"%@", filename );
     NSArray *pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],filename, nil];
     outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CC49DD61DAA11FC009E33DA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC49DD51DAA11FC009E33DA /* DetailViewController.m */; };
 		1CCC77EF1DA9856E0075B8B5 /* Recording+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC77EC1DA9856E0075B8B5 /* Recording+CoreDataClass.m */; };
 		1CCC77F01DA9856E0075B8B5 /* Recording+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC77EE1DA9856E0075B8B5 /* Recording+CoreDataProperties.m */; };
 		1CCC78201DA9CC770075B8B5 /* RecordingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC781F1DA9CC770075B8B5 /* RecordingTVC.m */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1CC49DD41DAA11FC009E33DA /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		1CC49DD51DAA11FC009E33DA /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		1CCC77EB1DA9856E0075B8B5 /* Recording+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Recording+CoreDataClass.h"; path = "speakText/Recording+CoreDataClass.h"; sourceTree = "<group>"; };
 		1CCC77EC1DA9856E0075B8B5 /* Recording+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Recording+CoreDataClass.m"; path = "speakText/Recording+CoreDataClass.m"; sourceTree = "<group>"; };
 		1CCC77ED1DA9856E0075B8B5 /* Recording+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Recording+CoreDataProperties.h"; path = "speakText/Recording+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				1CE01DBD1DA8AF46005DF015 /* ViewController.m */,
 				1CCC781E1DA9CC770075B8B5 /* RecordingTVC.h */,
 				1CCC781F1DA9CC770075B8B5 /* RecordingTVC.m */,
+				1CC49DD41DAA11FC009E33DA /* DetailViewController.h */,
+				1CC49DD51DAA11FC009E33DA /* DetailViewController.m */,
 				1CE01DBF1DA8AF46005DF015 /* Main.storyboard */,
 				1CCC77F11DA9857C0075B8B5 /* Models */,
 				1CE01DD01DA8B1F6005DF015 /* FrameWorks */,
@@ -228,6 +233,7 @@
 			files = (
 				1CE01DBE1DA8AF46005DF015 /* ViewController.m in Sources */,
 				1CE01DBB1DA8AF46005DF015 /* AppDelegate.m in Sources */,
+				1CC49DD61DAA11FC009E33DA /* DetailViewController.m in Sources */,
 				1CE01DB81DA8AF46005DF015 /* main.m in Sources */,
 				1CCC78201DA9CC770075B8B5 /* RecordingTVC.m in Sources */,
 				1CE01DF11DA8BA6F005DF015 /* WatsonBridge.swift in Sources */,

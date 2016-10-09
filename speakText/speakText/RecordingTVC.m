@@ -9,6 +9,7 @@
 #import "RecordingTVC.h"
 #import <CoreData/CoreData.h>
 #import "Recording+CoreDataClass.h"
+#import "DetailViewController.h"
 
 @interface RecordingTVC () {
     NSArray *recordings;
@@ -18,7 +19,7 @@
 
 @implementation RecordingTVC
 
-@synthesize managedObjectContext;
+@synthesize managedObjectContext, recording;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,14 +32,7 @@
     
     if (recordings.count == 0) {
         NSLog(@"Failed to access core data");
-    } else {
-        for (Recording *recording  in recordings) {
-            NSLog(@"%@", recording.title);
-        }
     }
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -63,11 +57,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    Recording *recording = recordings[indexPath.row];
+    Recording *recordingForCell = recordings[indexPath.row];
     
-    cell.textLabel.text = recording.title;
+    cell.textLabel.text = recordingForCell.title;
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    recording = recordings[indexPath.row];
+    NSLog(@"%@", [recording title]);
+    [self performSegueWithIdentifier:@"recording_detail" sender:nil];
 }
 
 
@@ -105,14 +105,16 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    DetailViewController *detailViewController = (DetailViewController *)[segue destinationViewController];
+    detailViewController.managedObjectContext = [self managedObjectContext];
+    detailViewController.recording = recording;
+
 }
-*/
+
 
 @end

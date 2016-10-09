@@ -46,9 +46,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-lC-jfd">
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Recordings"/>
                                 <connections>
-                                    <segue destination="KVQ-Zv-HSp" kind="show" id="I0g-vr-cfw"/>
+                                    <segue destination="KVQ-Zv-HSp" kind="showDetail" action="showViewController:sender:" id="I0g-vr-cfw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOe-w7-agz">
@@ -105,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cfl-PI-yKj" id="lqK-Ni-GN8">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -116,10 +116,68 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ejs-3V-Acg"/>
+                    <connections>
+                        <segue destination="2ou-fT-utL" kind="show" identifier="recording_detail" id="K3C-nZ-FYP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1l-46-9u0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1997.5999999999999" y="99.400299850074973"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="TSV-db-bpa">
+            <objects>
+                <viewController id="2ou-fT-utL" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ucQ-fH-kSF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rdb-LY-oT4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mIm-pr-Awm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qxj-Qs-VcA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="Dme-09-sUP"/>
+                                </constraints>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playPauseTapped:" destination="2ou-fT-utL" eventType="touchUpInside" id="Axq-aH-wVj"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-CW-Sif">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-yE-1nV">
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopTapped:" destination="2ou-fT-utL" eventType="touchUpInside" id="Xu3-2o-ZOb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qxj-Qs-VcA" firstAttribute="top" secondItem="ucQ-fH-kSF" secondAttribute="bottom" constant="8" symbolic="YES" id="9FH-7v-OhY"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="top" secondItem="ucQ-fH-kSF" secondAttribute="bottom" constant="205" id="KSW-vE-5sT"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="centerY" secondItem="mIm-pr-Awm" secondAttribute="centerY" id="O6H-sk-FCZ"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="leading" secondItem="mIm-pr-Awm" secondAttribute="leadingMargin" constant="51" id="UP2-8a-Yan"/>
+                            <constraint firstItem="aDX-yE-1nV" firstAttribute="leading" secondItem="Qxj-Qs-VcA" secondAttribute="leading" id="WZq-Zu-MrT"/>
+                            <constraint firstItem="Qxj-Qs-VcA" firstAttribute="trailing" secondItem="mIm-pr-Awm" secondAttribute="trailingMargin" id="Xqe-Xt-YbR"/>
+                            <constraint firstItem="aDX-yE-1nV" firstAttribute="top" secondItem="Qxj-Qs-VcA" secondAttribute="bottom" constant="8" symbolic="YES" id="civ-65-Ybk"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="centerX" secondItem="mIm-pr-Awm" secondAttribute="centerX" id="tuP-Zy-47P"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playPauseButton" destination="Qxj-Qs-VcA" id="UKD-w0-IS2"/>
+                        <outlet property="stopButton" destination="aDX-yE-1nV" id="GK5-15-2EI"/>
+                        <outlet property="textView" destination="Dwj-CW-Sif" id="ggN-qm-8WH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k30-Af-8ci" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2870" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h2N-IA-7Ef">
