@@ -41,7 +41,7 @@
     [saveButton setEnabled:NO];
     saveButton.hidden = YES;
     playButton.hidden = YES;
-    self.textView.text = @"";
+    self.textView.text = @"What is on your mind?";
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.71 green:0.73 blue:0.76 alpha:1.0];
     
@@ -128,7 +128,6 @@
         textField.placeholder = @"Title";
         textField.textColor = [UIColor grayColor];
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-//        textField.borderStyle = UITextBorderStyleRoundedRect;
     }];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -139,7 +138,6 @@
     alertController.view.tintColor = [UIColor darkGrayColor];
     alertController.view.backgroundColor = [UIColor colorWithRed:0x2B green:0xAE blue:0xFF alpha:1.0];
     
-//    alertController.v
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -163,49 +161,6 @@
 }
 
 
-
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    //Initialize button states
-//    [stopButton setEnabled:NO];
-//    [playButton setEnabled:NO];
-//    [saveButton setEnabled:NO];
-//    saveButton.hidden = YES;
-//    playButton.hidden = YES;
-//    self.textView.text = @"";
-//    
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.71 green:0.73 blue:0.76 alpha:1.0];
-//    
-//    //Add listner
-//    NSNotificationCenter *ns = [NSNotificationCenter defaultCenter];
-//    [ns addObserver:self selector:@selector(updateTextView:) name:@"TextReturnedFromWatson" object:nil];
-//    
-//    //Audio Path
-//    filename = [NSString stringWithFormat:@"%d%@", (int) [[NSDate date] timeIntervalSince1970], @".wav"];
-//    
-//    NSArray *pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],filename, nil];
-//    outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-//    
-//    //Audio session
-//    AVAudioSession *session = [AVAudioSession sharedInstance];
-//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-//    
-//    //Define recorder setting
-//    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-//    
-//    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-//    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-//    [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-//    
-//    //Initialize recorder
-//    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
-//    recorder.delegate = self;
-//    recorder.meteringEnabled = YES;
-//    [recorder prepareToRecord];
-//}
-
-
-
 - (void)updateTextView:(NSNotification *)notification {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSDictionary *dictionary = [notification userInfo];
@@ -215,7 +170,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
@@ -227,8 +181,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    UINavigationController *navigationController = [segue destinationViewController];
-    RecordingTVC *recordingTVC = (RecordingTVC *)[segue destinationViewController]; //([navigationController viewControllers][0]);
+    RecordingTVC *recordingTVC = (RecordingTVC *)[segue destinationViewController];
     recordingTVC.managedObjectContext = [self managedObjectContext];
 }
 

@@ -12,10 +12,6 @@ import AVFoundation
 
 class SpeechToTextBridge: NSObject {
     let speechToText = SpeechToText(username: "a", password: "b")
-//    let audio = NSBundle.mainBundle().URLForResource("Test", withExtension: "wav")!
-//    let a = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, false)
-    
-//    func synthesize(audio: NSURL) {
     
     var text:String?
     func startStreaming() {
@@ -24,18 +20,8 @@ class SpeechToTextBridge: NSObject {
         settings.interimResults = true
         let failure = { (error: NSError) in print(error) }
         _ = speechToText.recognizeMicrophone(settings, failure: failure) { results in
-//            print(results.bestTranscript)
             self.passText(results.bestTranscript)
         }
-//    func synthesize(audio: NSURL) {
-
-        //        var settings = RecognitionSettings(contentType: .WAV)
-//        settings.interimResults = false
-//        let failure = { (error: NSError) in print(error) }
-//        speechToText.recognize(audio, settings: settings, failure: failure) { results in
-//            print(results.bestTranscript)
-//            self.passText(results.bestTranscript)
-//        }
     }
     
     func stopStreaming() {
