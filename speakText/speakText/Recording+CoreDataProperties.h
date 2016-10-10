@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *file;
 @property (nullable, nonatomic, copy) NSString *transcript;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSNumber *dateRecorded;
 
 @end
 

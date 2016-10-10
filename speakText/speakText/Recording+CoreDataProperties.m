@@ -17,5 +17,6 @@
 @dynamic file;
 @dynamic transcript;
 @dynamic title;
+@dynamic dateRecorded;
 
 @end

@@ -26,14 +26,6 @@
 @implementation ViewController
 
 - (NSManagedObjectContext *)managedObjectContext {
-//    NSManagedObjectContext *context = nil;
-//    id delegate = [[UIApplication sharedApplication] delegate];
-//    if ([delegate performSelector:@selector(persistentContainer)]) {
-//        context = [delegate managedObjectContext];
-//    } else {
-//        NSLog(@"Context issue");
-//    }
-//    return context;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.newBackgroundContext;
     return context;
@@ -96,17 +88,9 @@
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSString *title = alertController.textFields[0].text;
-//        NSLog(@"%@", title);
         [self saveRecording:title];
-//        NSManagedObjectContext *managedContext = [self managedObjectContext];
-//        NSManagedObject *newRecording = [NSEntityDescription insertNewObjectForEntityForName:@"Recording" inManagedObjectContext:managedContext];
-//        [newRecording setValue:title forKey:@"title"];
-//            [newRecording setValue:textView.text forKey:@"transcript"];
     }]];
     
-    
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//    [alert addAction:defaultAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -116,6 +100,10 @@
     [newRecording setValue:title forKey:@"title"];
     [newRecording setValue:filename forKey:@"file"];
     [newRecording setValue:textView.text forKey:@"transcript"];
+    int date = (int)[[NSDate date] timeIntervalSince1970];
+    NSNumber *dateRecorded = [NSNumber numberWithInteger:date];
+    NSLog(@"Date recorded: %@", dateRecorded);
+    [newRecording setValue:dateRecorded forKey:@"dateRecorded"];
     
     NSError *error = nil;
     

@@ -11,18 +11,33 @@
 #import "Recording+CoreDataClass.h"
 #import "DetailViewController.h"
 
+
 @interface RecordingTVC () {
-    NSMutableArray *recordings;
+    NSArray *recordings;
+    NSMutableArray *filteredResults;
 }
 
 @end
 
 @implementation RecordingTVC
 
-@synthesize managedObjectContext, recording;
+
+@synthesize managedObjectContext, recording, searchController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    filteredResults = [NSMutableArray array];
+    searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    searchController.searchResultsUpdater = self;
+    searchController.dimsBackgroundDuringPresentation = NO;
+    searchController.definesPresentationContext = YES;
+    
+    searchController.searchBar.delegate = self;
+    searchController.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:@"All",@"Last 24h",@"Last 7d",@"Last 30d",nil];
+    
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
+    
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
@@ -30,15 +45,99 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:entityDescription];
     NSError *error;
-    recordings = [[managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
+    recordings = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     if (recordings.count == 0) {
         NSLog(@"Failed to access core data");
     }
     
+    for (Recording *r in recordings) {
+        NSLog(@"Title: %@, DateRecorded: %@",r.title, r.dateRecorded);
+    }
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+//-(void)filterResults:(NSString *)searchText {
+//    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Recording" inManagedObjectContext:managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    [fetchRequest setEntity:entityDescription];
+//    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@", searchText];
+//    [fetchRequest setPredicate:titlePredicate];
+//    
+//    NSError *error;
+//    recordings = [[managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
+//}
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)sc {
+    NSString *searchText = sc.searchBar.text;
+    NSString *searchFilter = sc.searchBar.scopeButtonTitles[sc.searchBar.selectedScopeButtonIndex];
+//    if (![searchText isEqualToString:@""]) {
+//        [self filterResults:searchText];
+        [self filterContentForSearchText:searchText :searchFilter];
+        [self.tableView reloadData];
+//    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+    NSString *searchText = searchBar.text;
+    NSString *searchFilter = searchBar.scopeButtonTitles[searchBar.selectedScopeButtonIndex];
+    [self filterContentForSearchText:searchText :searchFilter];
+    [self.tableView reloadData];
+
+}
+
+-(void)filterContentForSearchText:(NSString *)searchText :(NSString *)scope {
+    [filteredResults removeAllObjects];
+    for (Recording *record in recordings) {
+        int date = [record.dateRecorded intValue];
+        if (([searchText isEqualToString:@""] && [self checkDateScope:&date:scope]) || ([self checkDateScope:&date:scope] && [self titleContainsSearchText:searchText :record.title])) {
+            [filteredResults addObject:record];
+        }
+    }
+}
+
+-(BOOL)titleContainsSearchText:(NSString *)searchText :(NSString *)title {
+    NSString *lowerSearch = [searchText lowercaseString];
+    NSString *lowerTitle = [title lowercaseString];
+    if ([lowerTitle containsString:lowerSearch]) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)checkDateScope:(int *)date :(NSString *)scope {
+    if ([scope isEqualToString:@"All"] || [scope isEqualToString:@""]) {
+        NSLog(@"Yes");
+        return YES;
+    }
+    int timeframe = (int) -1 * [[NSDate date] timeIntervalSince1970];
+    if ([scope isEqualToString:@"Last 24h"]) {
+        // 24hr in seconds: 86400
+        //timeframe is -now+24hr]
+        if ((*date+timeframe+86400) >= 0 ){
+            return YES;
+        }
+        return NO;
+    } else if ([scope isEqualToString:@"Last 7d"]) {
+        // 7 days in seconds: 604800
+        //timeframe is -now+7day
+        if ((*date+timeframe+604800) >= 0 ){
+            return YES;
+        }
+        return NO;
+    } else if ([scope isEqualToString:@"Last 30d"]) {
+        // 30 days in seconds: 2592000
+        //timeframe is -now+30day
+        if ((*date+timeframe+2592000) >= 0 ){
+            return YES;
+        }
+        return NO;
+    }
+    return NO;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -48,20 +147,38 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+        return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return recordings.count;
+    if (!searchController.active) {
+        return recordings.count;
+    } else {
+        return filteredResults.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    Recording *recordingForCell = recordings[indexPath.row];
+    Recording *recordingForCell;
+    
+    if (!searchController.active) {
+        recordingForCell = recordings[indexPath.row];
+    } else {
+        recordingForCell = filteredResults[indexPath.row];
+    }
+    
     
     cell.textLabel.text = recordingForCell.title;
+    NSDate *cellDate = [NSDate dateWithTimeIntervalSince1970:[recordingForCell.dateRecorded doubleValue]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM d, yyyy"];
+    NSString *recordingDate = [dateFormatter stringFromDate:cellDate];
+//    MMM d, yyyy
+    
+    cell.detailTextLabel.text = recordingDate;
     
     return cell;
 }
@@ -91,12 +208,19 @@
         if (![managedObjectContext save:&error]) {
             NSLog(@"Error deleting from core data. %@ %@", error, [error localizedDescription]);
         }
-        [recordings removeObjectAtIndex:indexPath.row];
+        NSMutableArray *tempRecordings = [recordings mutableCopy];
+        [tempRecordings removeObjectAtIndex:indexPath.row];
+        recordings = tempRecordings;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+
+
+
+
+
 
 
 /*
@@ -126,3 +250,5 @@
 
 
 @end
+
+

@@ -48,7 +48,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-lC-jfd">
                                 <state key="normal" title="Recordings"/>
                                 <connections>
-                                    <segue destination="fmt-Lc-TlC" kind="show" identifier="recording_list" id="WwV-kF-wvo"/>
+                                    <segue destination="fmt-Lc-TlC" kind="show" identifier="recording_list" id="lcp-UF-fBR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOe-w7-agz">
@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079.2" y="99.400299850074973"/>
+            <point key="canvasLocation" x="2850" y="99"/>
         </scene>
         <!--RecordingTVC-->
         <scene sceneID="0Qm-7K-VcT">
@@ -102,12 +102,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Cfl-PI-yKj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="XYG-Q0-QAY" detailTextLabel="igB-kH-gHn" style="IBUITableViewCellStyleSubtitle" id="Cfl-PI-yKj">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cfl-PI-yKj" id="lqK-Ni-GN8">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XYG-Q0-QAY">
+                                            <frame key="frameInset" minX="15" minY="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="igB-kH-gHn">
+                                            <frame key="frameInset" minX="15" minY="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -116,14 +132,14 @@
                             <outlet property="delegate" destination="fmt-Lc-TlC" id="frd-Bv-rUu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ejs-3V-Acg"/>
+                    <navigationItem key="navigationItem" id="XLC-4y-cdC"/>
                     <connections>
                         <segue destination="2ou-fT-utL" kind="show" identifier="recording_detail" id="K3C-nZ-FYP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1l-46-9u0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2936.8000000000002" y="99.400299850074973"/>
+            <point key="canvasLocation" x="3876" y="99.400299850074973"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="TSV-db-bpa">
@@ -178,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k30-Af-8ci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3808.8000000000002" y="98.50074962518741"/>
+            <point key="canvasLocation" x="4748" y="98.50074962518741"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iBh-Rf-6ES">
