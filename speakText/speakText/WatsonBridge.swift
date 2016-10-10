@@ -18,15 +18,28 @@ class SpeechToTextBridge: NSObject {
 //    func synthesize(audio: NSURL) {
     
     var text:String?
-    
-    func synthesize(audio: NSURL) {
-        var settings = RecognitionSettings(contentType: .WAV)
-        settings.interimResults = false
+    func startStreaming() {
+        var settings = RecognitionSettings(contentType: .Opus)
+        settings.continuous = true
+        settings.interimResults = true
         let failure = { (error: NSError) in print(error) }
-        speechToText.recognize(audio, settings: settings, failure: failure) { results in
-            print(results.bestTranscript)
+        _ = speechToText.recognizeMicrophone(settings, failure: failure) { results in
+//            print(results.bestTranscript)
             self.passText(results.bestTranscript)
         }
+//    func synthesize(audio: NSURL) {
+
+        //        var settings = RecognitionSettings(contentType: .WAV)
+//        settings.interimResults = false
+//        let failure = { (error: NSError) in print(error) }
+//        speechToText.recognize(audio, settings: settings, failure: failure) { results in
+//            print(results.bestTranscript)
+//            self.passText(results.bestTranscript)
+//        }
+    }
+    
+    func stopStreaming() {
+        speechToText.stopRecognizeMicrophone()
     }
     
     func passText(text: String) {

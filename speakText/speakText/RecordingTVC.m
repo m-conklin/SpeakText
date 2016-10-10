@@ -44,6 +44,9 @@
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Recording" inManagedObjectContext:managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:entityDescription];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"dateRecorded" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sort];
+    fetchRequest.sortDescriptors = sortDescriptors;
     NSError *error;
     recordings = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
@@ -55,29 +58,14 @@
         NSLog(@"Title: %@, DateRecorded: %@",r.title, r.dateRecorded);
     }
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
-//-(void)filterResults:(NSString *)searchText {
-//    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Recording" inManagedObjectContext:managedObjectContext];
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    [fetchRequest setEntity:entityDescription];
-//    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@", searchText];
-//    [fetchRequest setPredicate:titlePredicate];
-//    
-//    NSError *error;
-//    recordings = [[managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
-//}
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)sc {
     NSString *searchText = sc.searchBar.text;
     NSString *searchFilter = sc.searchBar.scopeButtonTitles[sc.searchBar.selectedScopeButtonIndex];
-//    if (![searchText isEqualToString:@""]) {
-//        [self filterResults:searchText];
+
         [self filterContentForSearchText:searchText :searchFilter];
         [self.tableView reloadData];
-//    }
 }
 
 -(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {

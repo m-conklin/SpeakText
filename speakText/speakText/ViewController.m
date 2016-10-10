@@ -45,6 +45,8 @@
         
         //Begin recording
         [recorder record];
+        speechToTextBridge = [[SpeechToTextBridge alloc] init];
+        [speechToTextBridge startStreaming];
         [recordButton setTitle:@"Pause" forState:UIControlStateNormal];
     } else {
         [recorder pause];
@@ -56,20 +58,21 @@
 
 - (IBAction)stopButtonTapped:(UIButton *)sender {
     [recorder stop];
+    [speechToTextBridge stopStreaming];
     [recordButton setTitle:@"Record" forState:UIControlStateNormal];
     [saveButton setEnabled:YES];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        speechToTextBridge = [[SpeechToTextBridge alloc] init];
-        [speechToTextBridge synthesize:outputFileURL];
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        speechToTextBridge = [[SpeechToTextBridge alloc] init];
+//        [speechToTextBridge synthesize:outputFileURL];
+//    });
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
 }
 
 - (IBAction)playButtonTapped:(UIButton *)sender {
     if (!recorder.recording) {
-        speechToTextBridge = [[SpeechToTextBridge alloc] init];
-        [speechToTextBridge synthesize:outputFileURL];
+//        speechToTextBridge = [[SpeechToTextBridge alloc] init];
+//        [speechToTextBridge synthesize:outputFileURL];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
         [player setDelegate:self];
         [player play];
@@ -153,7 +156,7 @@
 
 
 - (void)updateTextView:(NSNotification *)notification {
-    dispatch_async(dispatch_get_main_queue(), ^{ // 2
+    dispatch_async(dispatch_get_main_queue(), ^{
         NSDictionary *dictionary = [notification userInfo];
         textView.text = dictionary[@"text"];
     });
