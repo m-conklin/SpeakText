@@ -56,7 +56,6 @@
     if (player.playing) {
         [player stop];
     } else {
-        NSLog(@"play tapped");
         [player play];
     }
     

@@ -111,7 +111,6 @@
     [newRecording setValue:textView.text forKey:@"transcript"];
     int date = (int)[[NSDate date] timeIntervalSince1970];
     NSNumber *dateRecorded = [NSNumber numberWithInteger:date];
-    NSLog(@"Date recorded: %@", dateRecorded);
     [newRecording setValue:dateRecorded forKey:@"dateRecorded"];
     
     NSError *error = nil;
@@ -130,6 +129,8 @@
     [playButton setEnabled:NO];
     [saveButton setEnabled:NO];
     
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.71 green:0.73 blue:0.76 alpha:1.0];
+    
     //Add listner
     NSNotificationCenter *ns = [NSNotificationCenter defaultCenter];
     [ns addObserver:self selector:@selector(updateTextView:) name:@"TextReturnedFromWatson" object:nil];
@@ -137,7 +138,6 @@
     //Audio Path
     filename = [NSString stringWithFormat:@"%d%@", (int) [[NSDate date] timeIntervalSince1970], @".wav"];
     
-//    NSLog(@"%@", filename );
     NSArray *pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],filename, nil];
     outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     

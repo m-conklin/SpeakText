@@ -26,6 +26,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.71 green:0.73 blue:0.76 alpha:1.0];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0xD6 green:0xE7 blue:0xEE alpha:0.75];
+    
+    
     filteredResults = [NSMutableArray array];
     searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     searchController.searchResultsUpdater = self;
@@ -34,6 +38,9 @@
     
     searchController.searchBar.delegate = self;
     searchController.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:@"All",@"Last 24h",@"Last 7d",@"Last 30d",nil];
+    UITextField *searchTextField = (UITextField *)[searchController.searchBar valueForKey:@"searchField"];
+    searchTextField.textColor = [UIColor darkGrayColor];
+    searchController.searchBar.tintColor = [UIColor colorWithRed:0xD6 green:0xE7 blue:0xEE alpha:0.75];
     
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
@@ -53,11 +60,6 @@
     if (recordings.count == 0) {
         NSLog(@"Failed to access core data");
     }
-    
-    for (Recording *r in recordings) {
-        NSLog(@"Title: %@, DateRecorded: %@",r.title, r.dateRecorded);
-    }
-    
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)sc {
@@ -97,7 +99,6 @@
 
 -(BOOL)checkDateScope:(int *)date :(NSString *)scope {
     if ([scope isEqualToString:@"All"] || [scope isEqualToString:@""]) {
-        NSLog(@"Yes");
         return YES;
     }
     int timeframe = (int) -1 * [[NSDate date] timeIntervalSince1970];
@@ -164,16 +165,17 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMM d, yyyy"];
     NSString *recordingDate = [dateFormatter stringFromDate:cellDate];
-//    MMM d, yyyy
-    
     cell.detailTextLabel.text = recordingDate;
+    UIColor *textColor = [UIColor colorWithRed:0xD6 green:0xE7 blue:0xEE alpha:0.75];
+    cell.textLabel.textColor = textColor;
+    cell.detailTextLabel.textColor = textColor;
+    
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     recording = recordings[indexPath.row];
-    NSLog(@"%@", [recording title]);
     [self performSegueWithIdentifier:@"recording_detail" sender:nil];
 }
 
