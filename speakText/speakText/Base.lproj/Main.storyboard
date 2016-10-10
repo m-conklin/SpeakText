@@ -31,11 +31,6 @@
                                     <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zNQ-4b-TpI"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j0Y-k5-K16">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPR-Ra-KUv">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="NHg-Mh-maf"/>
@@ -60,15 +55,20 @@
                                     <action selector="playButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gMK-Yx-Wpr"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j0Y-k5-K16">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lNS-lC-jfd" firstAttribute="baseline" secondItem="R0G-ZZ-jse" secondAttribute="baseline" id="1XX-Tc-ZRD"/>
                             <constraint firstItem="lNS-lC-jfd" firstAttribute="baseline" secondItem="PMC-ep-Eus" secondAttribute="baseline" id="2UB-Qo-00w"/>
-                            <constraint firstItem="j0Y-k5-K16" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="E4i-TJ-419"/>
+                            <constraint firstItem="j0Y-k5-K16" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="112" id="E4i-TJ-419"/>
                             <constraint firstItem="lNS-lC-jfd" firstAttribute="centerX" secondItem="j0Y-k5-K16" secondAttribute="centerX" id="F8k-Ax-J8l"/>
                             <constraint firstItem="mOe-w7-agz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-152" id="FUT-Za-2LJ"/>
-                            <constraint firstItem="j0Y-k5-K16" firstAttribute="top" secondItem="mOe-w7-agz" secondAttribute="bottom" constant="89" id="IjV-nr-5Hc"/>
+                            <constraint firstItem="j0Y-k5-K16" firstAttribute="top" secondItem="mOe-w7-agz" secondAttribute="bottom" constant="8" id="IjV-nr-5Hc"/>
                             <constraint firstItem="j0Y-k5-K16" firstAttribute="centerX" secondItem="mOe-w7-agz" secondAttribute="centerX" constant="152" id="MkK-GQ-cpM"/>
                             <constraint firstItem="lNS-lC-jfd" firstAttribute="leading" secondItem="PMC-ep-Eus" secondAttribute="trailing" constant="86" id="PZO-5P-H2Q"/>
                             <constraint firstItem="cPR-Ra-KUv" firstAttribute="top" secondItem="R0G-ZZ-jse" secondAttribute="bottom" constant="92" id="URq-MS-A8M"/>
@@ -77,7 +77,7 @@
                             <constraint firstItem="cPR-Ra-KUv" firstAttribute="leading" secondItem="R0G-ZZ-jse" secondAttribute="leading" id="me1-ps-97G"/>
                             <constraint firstItem="cPR-Ra-KUv" firstAttribute="trailing" secondItem="R0G-ZZ-jse" secondAttribute="trailing" id="mgI-KJ-A6E"/>
                             <constraint firstItem="cPR-Ra-KUv" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="p7B-Xj-Xrk"/>
-                            <constraint firstItem="j0Y-k5-K16" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="wEa-xN-len"/>
+                            <constraint firstItem="j0Y-k5-K16" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-2" id="wEa-xN-len"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ACe-9K-cPo"/>
@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2850" y="99"/>
+            <point key="canvasLocation" x="2848.8000000000002" y="98.50074962518741"/>
         </scene>
         <!--RecordingTVC-->
         <scene sceneID="0Qm-7K-VcT">
@@ -162,24 +162,24 @@
                                     <action selector="playPauseTapped:" destination="2ou-fT-utL" eventType="touchUpInside" id="Axq-aH-wVj"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-CW-Sif">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-yE-1nV">
                                 <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="stopTapped:" destination="2ou-fT-utL" eventType="touchUpInside" id="Xu3-2o-ZOb"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-CW-Sif">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Qxj-Qs-VcA" firstAttribute="top" secondItem="ucQ-fH-kSF" secondAttribute="bottom" constant="8" symbolic="YES" id="9FH-7v-OhY"/>
-                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="top" secondItem="ucQ-fH-kSF" secondAttribute="bottom" constant="205" id="KSW-vE-5sT"/>
-                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="centerY" secondItem="mIm-pr-Awm" secondAttribute="centerY" id="O6H-sk-FCZ"/>
-                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="leading" secondItem="mIm-pr-Awm" secondAttribute="leadingMargin" constant="51" id="UP2-8a-Yan"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="top" secondItem="ucQ-fH-kSF" secondAttribute="bottom" constant="80" id="KSW-vE-5sT"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="centerY" secondItem="mIm-pr-Awm" secondAttribute="centerY" constant="68" id="O6H-sk-FCZ"/>
+                            <constraint firstItem="Dwj-CW-Sif" firstAttribute="leading" secondItem="mIm-pr-Awm" secondAttribute="leadingMargin" id="UP2-8a-Yan"/>
                             <constraint firstItem="aDX-yE-1nV" firstAttribute="leading" secondItem="Qxj-Qs-VcA" secondAttribute="leading" id="WZq-Zu-MrT"/>
                             <constraint firstItem="Qxj-Qs-VcA" firstAttribute="trailing" secondItem="mIm-pr-Awm" secondAttribute="trailingMargin" id="Xqe-Xt-YbR"/>
                             <constraint firstItem="aDX-yE-1nV" firstAttribute="top" secondItem="Qxj-Qs-VcA" secondAttribute="bottom" constant="8" symbolic="YES" id="civ-65-Ybk"/>

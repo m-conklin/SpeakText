@@ -38,16 +38,22 @@
     if (player.playing) {
         [player stop];
     }
-    
+    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+
     if (!recorder.recording) {
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        [session setActive:YES error:nil];
-        
-        //Begin recording
-        [recorder record];
-        speechToTextBridge = [[SpeechToTextBridge alloc] init];
-        [speechToTextBridge startStreaming];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            [session setActive:YES error:nil];
+            
+            //Begin recording
+            [recorder record];
+            
+            speechToTextBridge = [[SpeechToTextBridge alloc] init];
+            [speechToTextBridge startStreaming];
+        });
         [recordButton setTitle:@"Pause" forState:UIControlStateNormal];
+
     } else {
         [recorder pause];
         [recordButton setTitle:@"Record" forState:UIControlStateNormal];

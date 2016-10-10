@@ -11,7 +11,7 @@ import SpeechToTextV1
 import AVFoundation
 
 class SpeechToTextBridge: NSObject {
-    let speechToText = SpeechToText(username: "77b3137d-673a-4625-9ed9-e9be0b404902", password: "e8Y2hqO4lZla")
+    let speechToText = SpeechToText(username: "a", password: "b")
 //    let audio = NSBundle.mainBundle().URLForResource("Test", withExtension: "wav")!
 //    let a = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, false)
     
